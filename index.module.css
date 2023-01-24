@@ -14,9 +14,6 @@
 .menu {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
-    border-radius: 4px;
-    color: #000;
     overflow: auto;
     max-height: 500px;
     max-width: 400px;
@@ -42,11 +39,9 @@
     min-width: 120px;
     word-wrap: break-word;
     word-break: break-all;
-    background-color: #fff;
     z-index: 1;
     position: relative;
     align-items: center;
-    gap: 10px;
 }
 .screen {
     position: absolute;
@@ -58,6 +53,5 @@
 }
 
 .item:hover {
-    background-color: #ddd;
     cursor: pointer;
 }

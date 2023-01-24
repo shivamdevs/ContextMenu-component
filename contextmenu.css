@@ -1,0 +1,14 @@
+.myoasis-contextmenu {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #0004;
+    border-radius: 4px;
+}
+
+.myoasis-contextmenuitem {
+    background-color: #fff;
+    gap: 15px;
+}
+.myoasis-contextmenuitem:hover {
+    background-color: #ddd;
+}

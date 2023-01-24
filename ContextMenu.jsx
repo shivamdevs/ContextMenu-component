@@ -61,7 +61,7 @@ export function ContextMenu({menu = null, className = "",  ...props}) {
     }, [menu]);
     return (
         <div className={`${css.block} ${css.hidden}`} ref={refer} onContextMenu={(e) => e.preventDefault()} style={{top: 0, left: 0}}>
-            <div className={`${css.menu} ${className}`} {...props} ref={child}></div>
+            <div className={`${css.menu} myoasis-contextmenu ${className}`} {...props} ref={child}></div>
         </div>
     );
 };
@@ -107,7 +107,7 @@ export function ContextMenuItem({className = "", onClick = null, data = null, ch
         addExclude(refer.current);
     }, []);
     return (
-        <div className={`${css.item} ${className}`} {...props}>
+        <div className={`${css.item} myoasis-contextmenuitem ${className}`} {...props}>
             {children}
             <div className={css.screen} ref={refer} onClick={clicked} onContextMenu={clicked}></div>
         </div>

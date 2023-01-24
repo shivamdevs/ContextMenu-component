@@ -7,11 +7,11 @@ exports.ContextMenu = ContextMenu;
 exports.ContextMenuItem = ContextMenuItem;
 exports.ContextMenuTrigger = ContextMenuTrigger;
 var _react = _interopRequireWildcard(require("react"));
-var _ContextMenuModule = _interopRequireDefault(require("./index.module.css"));
-var _jsxRuntime = require("react/jsx-runtime");
+var _indexModule = _interopRequireDefault(require("./index.module.css"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 const contextMenuObject = {};
 function addMenu(menu, key, data) {
     if (!menu) return;
@@ -35,12 +35,12 @@ function openMenu(menu) {
     const style = block.menu.style;
     style.top = pos.top + "px";
     style.left = pos.left + "px";
-    block.menu.classList.remove(_ContextMenuModule.default.hidden);
+    block.menu.classList.remove(_indexModule.default.hidden);
 }
 function closeMenu(menu) {
     if (!menu) return closeAllMenu();
     if (!contextMenuObject[menu] || !contextMenuObject[menu].menu) return;
-    contextMenuObject[menu].menu.classList.add(_ContextMenuModule.default.hidden);
+    contextMenuObject[menu].menu.classList.add(_indexModule.default.hidden);
     contextMenuObject[menu].menu.style.top = 0;
     contextMenuObject[menu].menu.style.left = 0;
 }
@@ -70,20 +70,19 @@ function ContextMenu({
         addExclude(refer.current);
         addExclude(child.current);
     }, [menu]);
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-        className: `${_ContextMenuModule.default.block} ${_ContextMenuModule.default.hidden}`,
+    return /*#__PURE__*/_react.default.createElement("div", {
+        className: `${_indexModule.default.block} ${_indexModule.default.hidden}`,
         ref: refer,
         onContextMenu: e => e.preventDefault(),
         style: {
             top: 0,
             left: 0
-        },
-        children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-            className: `${_ContextMenuModule.default.menu} ${className}`,
-            ...props,
-            ref: child
-        })
-    });
+        }
+    }, /*#__PURE__*/_react.default.createElement("div", _extends({
+        className: `${_indexModule.default.menu} myoasis-contextmenu ${className}`
+    }, props, {
+        ref: child
+    })));
 }
 ;
 function ContextMenuTrigger({
@@ -121,12 +120,11 @@ function ContextMenuTrigger({
         if (onContextMenu && onContextMenu(e) === false) return;
         perform(e);
     };
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+    return /*#__PURE__*/_react.default.createElement("div", _extends({
         ref: refer,
         onClick: clicked,
-        onContextMenu: context,
-        ...props
-    });
+        onContextMenu: context
+    }, props));
 }
 function ContextMenuItem({
     className = "",
@@ -145,14 +143,12 @@ function ContextMenuItem({
     (0, _react.useEffect)(() => {
         addExclude(refer.current);
     }, []);
-    return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
-        className: `${_ContextMenuModule.default.item} ${className}`,
-        ...props,
-        children: [children, /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-            className: _ContextMenuModule.default.screen,
-            ref: refer,
-            onClick: clicked,
-            onContextMenu: clicked
-        })]
-    });
+    return /*#__PURE__*/_react.default.createElement("div", _extends({
+        className: `${_indexModule.default.item} myoasis-contextmenuitem ${className}`
+    }, props), children, /*#__PURE__*/_react.default.createElement("div", {
+        className: _indexModule.default.screen,
+        ref: refer,
+        onClick: clicked,
+        onContextMenu: clicked
+    }));
 }

@@ -18,9 +18,17 @@
     "menu"
   ],
   "author": "Shivamdevs",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivamdevs/ContextMenu-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shivamdevs/ContextMenu-component/issues"
+  },
+  "homepage": "https://github.com/shivamdevs/ContextMenu-component#readme"
 }

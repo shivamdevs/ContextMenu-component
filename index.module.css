@@ -1,0 +1,63 @@
+.block {
+    position: fixed;
+    z-index: 99999;
+    padding: 1px;
+}
+.block,
+.block * {
+    box-sizing: border-box;
+}
+.hidden {
+    visibility: hidden;
+    z-index: -99999;
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 4px;
+    color: #000;
+    overflow: auto;
+    max-height: 500px;
+    max-width: 400px;
+}
+@media screen and (max-width: 500px) {
+    .menu {
+        max-width: calc(100vw - 20px);
+    }
+}
+@media screen and (max-height: 600px) {
+    .menu {
+        max-width: calc(100vh - 20px);
+    }
+}
+
+.item {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    transition: .2s;
+    min-width: 120px;
+    word-wrap: break-word;
+    word-break: break-all;
+    background-color: #fff;
+    z-index: 1;
+    position: relative;
+    align-items: center;
+    gap: 10px;
+}
+.screen {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+.hidden .item {
+    transition: 0s;
+}
+
+.item:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}

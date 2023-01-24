@@ -1,0 +1,26 @@
+{
+  "name": "myoasis-contextmenu",
+  "version": "1.0.0",
+  "description": "A React based highly customizable context menu for both desktop and mobile view.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "myoasis-context-menu",
+    "myoasis-contextmenu",
+    "react-context-menu",
+    "react-contextmenu",
+    "contextmenu",
+    "context",
+    "myoasis",
+    "react",
+    "menu"
+  ],
+  "author": "Shivamdevs",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}

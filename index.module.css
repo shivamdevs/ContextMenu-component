@@ -3,14 +3,17 @@
     z-index: 99999;
     padding: 1px;
 }
+
 .block,
 .block * {
     box-sizing: border-box;
 }
+
 .hidden {
     visibility: hidden;
     z-index: -99999;
 }
+
 .menu {
     display: flex;
     flex-direction: column;
@@ -18,15 +21,40 @@
     max-height: 500px;
     max-width: 400px;
 }
+
 @media screen and (max-width: 500px) {
     .menu {
         max-width: calc(100vw - 20px);
     }
 }
+
 @media screen and (max-height: 600px) {
     .menu {
         max-width: calc(100vh - 20px);
     }
+}
+
+
+.menu.anspring {
+    transition: .1s opacity, .1s transform;
+    transform: scale3d(1, 1, 1) translateY(0px);
+    opacity: 1;
+}
+
+.hidden .menu.anspring {
+    opacity: 0;
+    transition: 0s;
+    transform: scale3d(1, .8, 1) translateY(-20px);
+}
+
+.menu.anfade {
+    transition: .1s opacity;
+    opacity: 1;
+}
+
+.hidden .menu.anfade {
+    transition: 0s;
+    opacity: 0;
 }
 
 .item {
@@ -43,11 +71,13 @@
     position: relative;
     align-items: center;
 }
+
 .screen {
     position: absolute;
     inset: 0;
     z-index: 1;
 }
+
 .hidden .item {
     transition: 0s;
 }

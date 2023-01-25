@@ -3,6 +3,8 @@ import css from './index.module.css';
 
 const contextMenuObject = {};
 
+const shiftDistance = 5;
+
 function addMenu(menu, key, data) {
     if (!menu) return;
     if (!contextMenuObject[menu]) contextMenuObject[menu] = {};
@@ -19,13 +21,22 @@ function openMenu(menu) {
     const pos = block.position;
     (() => {
         const rect = block.menu.getBoundingClientRect();
-        if (rect.width + pos.left > window.innerWidth + 10) pos.left = window.innerWidth - rect.width - 10;
-        if (rect.height + pos.top > window.innerHeight + 10) pos.top = window.innerHeight - rect.height - 10;
+        if (rect.width + pos.left > window.innerWidth + shiftDistance) pos.left = window.innerWidth - rect.width - shiftDistance;
+        if (rect.height + pos.top > window.innerHeight + shiftDistance) pos.top = window.innerHeight - rect.height - shiftDistance;
     })();
     const style = block.menu.style;
     style.top = pos.top + "px";
     style.left = pos.left + "px";
     block.menu.classList.remove(css.hidden);
+}
+function toggleMenu(menu) {
+    const block = getMenu(menu);
+    if (!block.menu) return;
+    if (block.menu.classList.contains(css.hidden)) {
+        openMenu(menu);
+    } else {
+        closeMenu(menu);
+    }
 }
 function closeMenu(menu) {
     if (!menu) return closeAllMenu();
@@ -34,7 +45,7 @@ function closeMenu(menu) {
     contextMenuObject[menu].menu.style.top = 0;
     contextMenuObject[menu].menu.style.left = 0;
 }
-function closeAllMenu(menu) {
+function closeAllMenu(menu, trigger = false) {
     Object.keys(contextMenuObject).forEach(menus => {
         if (menu && menus === menu) return;
         closeMenu(menus);
@@ -46,12 +57,20 @@ function addExclude(elem) {
     if (!excludedElements.includes(elem)) excludedElements.push(elem);
 }
 
-window.addEventListener("mousedown", (e) => {
-    if (excludedElements.includes(e.target)) return;
-    closeAllMenu();
-});
+function loopExclude(elem) {
+    while (elem !== document.querySelector("body")) {
+        if (excludedElements.includes(elem)) return true;
+        elem = elem.parentElement;
+    }
+    return false;
+}
 
-export function ContextMenu({menu = null, className = "",  ...props}) {
+window.addEventListener("mousedown", (e) => {
+    if (loopExclude(e.target)) return;
+    closeAllMenu(null, true);
+}, true);
+
+export function ContextMenu({ menu = null, className = "", animation = "fade", ...props}) {
     const refer = useRef();
     const child = useRef();
     useEffect(() => {
@@ -61,7 +80,7 @@ export function ContextMenu({menu = null, className = "",  ...props}) {
     }, [menu]);
     return (
         <div className={`${css.block} ${css.hidden}`} ref={refer} onContextMenu={(e) => e.preventDefault()} style={{top: 0, left: 0}}>
-            <div className={`${css.menu} myoasis-contextmenu ${className}`} {...props} ref={child}></div>
+            <div className={`${css.menu} myoasis-contextmenu ${className} ${css[`an${animation}`]}`} {...props} ref={child}></div>
         </div>
     );
 };
@@ -71,24 +90,28 @@ export function ContextMenuTrigger({menu, onClick = null, onContextMenu = null, 
     useEffect(() => {
         addExclude(refer.current);
     }, []);
+    useEffect(() => {
+        addMenu(menu, "trigger", trigger);
+        addMenu(menu, "exact", exact);
+    }, [menu, trigger, exact]);
 
-    const perform = (e) => {
+    const perform = (e, toggle = false) => {
         e.preventDefault();
-        closeAllMenu(menu);
         const rect = refer.current.getBoundingClientRect();
-        addMenu(menu, "position", (exact ? { top: e.clientY, left: e.clientX } : { top: rect.top + rect.height + 10, left: e.clientX }));
-        openMenu(menu);
+        addMenu(menu, "position", (exact ? { top: e.clientY, left: e.clientX } : { top: rect.top + rect.height + shiftDistance, left: e.clientX }));
+        if (toggle) {toggleMenu(menu);} else {openMenu(menu);}
     };
 
     const clicked = (e) => {
+        closeAllMenu(menu);
         if (trigger !== "click") return;
         if (onClick && onClick(e) === false) return;
-        perform(e);
+        perform(e, true);
     };
     const context = (e) => {
-        if (trigger !== "contextmenu") return;
+        closeAllMenu();
         if (onContextMenu && onContextMenu(e) === false) return;
-        perform(e);
+        perform(e, trigger !== "contextmenu");
     };
     return (
         <div ref={refer} onClick={clicked} onContextMenu={context} {...props}></div>

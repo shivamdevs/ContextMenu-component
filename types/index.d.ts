@@ -1,9 +1,9 @@
-declare module 'myoasis-contextmenu';
 export const __esModule: boolean;
-export function ContextMenu({ menu, className, ...props }: {
+export function ContextMenu({ menu, className, animation, ...props }: {
     [x: string]: any;
     menu?: any;
     className?: string;
+    animation?: string;
 }): any;
 export function ContextMenuItem({ className, onClick, data, children, ...props }: {
     [x: string]: any;

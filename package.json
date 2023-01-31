@@ -1,6 +1,6 @@
 {
   "name": "myoasis-contextmenu",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A React based highly customizable context menu for both desktop and mobile view.",
   "main": "index.js",
   "scripts": {

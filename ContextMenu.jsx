@@ -3,7 +3,7 @@ import css from './index.module.css';
 
 const contextMenuObject = {};
 
-const shiftDistance = 5;
+const shiftDistance = 15;
 
 function addMenu(menu, key, data) {
     if (!menu) return;

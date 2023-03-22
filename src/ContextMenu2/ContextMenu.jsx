@@ -85,7 +85,7 @@ export function ContextMenu({ menu = null, className = "", animation = "fade", .
     );
 };
 
-export function ContextMenuTrigger({menu, onClick = null, onContextMenu = null, exact = true, trigger = "contextmenu", ...props}) {
+export function ContextMenuTrigger({menu, onClick = null, onContextMenu = null, exact = true, trigger = "contextmenu", children = null}) {
     const refer = useRef();
     useEffect(() => {
         addExclude(refer.current);
@@ -113,8 +113,18 @@ export function ContextMenuTrigger({menu, onClick = null, onContextMenu = null, 
         if (onContextMenu && onContextMenu(e) === false) return;
         perform(e, trigger !== "contextmenu");
     };
+    const childrenWithProps = React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+                onClick: clicked,
+                onContextMenu: context,
+                ref: (refer.current? null : refer),
+            });
+        }
+        return child;
+    });
     return (
-        <div ref={refer} onClick={clicked} onContextMenu={context} {...props}></div>
+        <>{childrenWithProps}</>
     );
 }
 

@@ -1,0 +1,23 @@
+.contextmenu[data-theme~=default] {
+    --contextmenu-bg: #fff;
+    --contextmenu-trans: 300ms;
+    --contextmenu-height: 600px;
+    --contextmenu-width: 500px;
+    --contextmenu-edges: 5px;
+    --contextmenu-borderWidth: 1px;
+    --contextmenu-borderStyle: solid;
+    --contextmenu-borderColor: #ddd;
+    --contextmenu-scroll: #828c9f;
+    --contextmenu-shadow: #0004;
+
+    --contextitem-bg: #fff;
+    --contextitem-bg-break: #e6ebf3;
+    --contextitem-bg-hover: #bbc;
+    --contextitem-bg-disabled: #fff;
+
+    --contextitem-color: initial;
+    --contextitem-color-disabled: initial;
+    --contextitem-color-icon: #5c6370;
+    --contextitem-color-after: #999fac;
+    --contextitem-color-icon-disabled: initial;
+}

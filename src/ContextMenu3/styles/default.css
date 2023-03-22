@@ -1,0 +1,127 @@
+.__mos_ctxt_menu {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    padding: 1px;
+}
+
+.__mos_ctxt_menu_block {
+    background-color: #fff;
+    transition: 300ms;
+    max-width: min(600px, 100vw);
+    max-height: min(500px, 100vh);
+    box-shadow: 5px 5px 8px 2px #0004;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    overflow: auto;
+    padding-block: 5px;
+}
+
+.__mos_ctxt_menu_block::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.__mos_ctxt_menu_block::-webkit-scrollbar-thumb {
+    background: #828c9f;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+    border-radius: 10px;
+    box-shadow: none;
+    min-height: 40px;
+    min-width: 40px;
+}
+
+.__mos_ctxt_menu_block::-webkit-scrollbar-track,
+.__mos_ctxt_menu_block::-webkit-scrollbar-track:hover {
+    background: none;
+    border: none;
+}
+
+.__mos_ctxt_item {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: calc(100% - 10px);
+    margin-inline: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: inherit;
+    transition: .2s;
+    outline: none;
+    gap: 1em;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 10px;
+}
+
+.__mos_ctxt_item:not(:disabled):hover {
+    background-color: #bbc;
+    cursor: pointer;
+}
+
+.__mos_ctxt_item_icon {
+    min-width: 1.5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.__mos_ctxt_item .__mos_ctxt_item_icon:last-child {
+    min-width: 1em;
+    font-size: 14px;
+}
+
+.__mos_ctxt_item:not(:disabled):not(:hover) .__mos_ctxt_item_icon {
+    color: #5c6370;
+}
+
+.__mos_ctxt_item_content {
+    flex: 1;
+    /* width: calc(100% - 5em); */
+    text-align: left;
+}
+
+.__mos_ctxt_item_after:not(:empty) {
+    margin-left: 3em;
+    white-space: nowrap;
+}
+
+.__mos_ctxt_item:not(:disabled):not(:hover) .__mos_ctxt_item_after {
+    color: #999fac;
+}
+
+.__mos_ctxt_item_icon,
+.__mos_ctxt_item_content {
+    white-space: nowrap;
+    word-wrap: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.__mos_ctxt_menu_block:not(:has(.__mos_ctxt_item_icon_has_)) .__mos_ctxt_item_icon_,
+.__mos_ctxt_menu_block:not(:has(.__mos_ctxt_item_icon_has__)) .__mos_ctxt_item_icon__,
+.__mos_ctxt_menu_block:not(:has(.__mos_ctxt_item_after_)) .__mos_ctxt_item_after {
+    display: none;
+}
+.__mos_ctxt_menu_block:not(:has(.__mos_ctxt_item_icon_has_):has(.__mos_ctxt_item_icon_has__):has(.__mos_ctxt_item_after_)) .__mos_ctxt_item {
+    padding-inline: 15px;
+}
+
+.__mos_ctxt_break {
+    min-height: 1px;
+    max-height: 1px;
+    height: 1px;
+    background-color: #e6ebf3;
+    width: 100%;
+    margin-block: 5px;
+}
+
+.__mos_ctxt_item_screen {
+    position: absolute;
+    inset: 0;
+}
